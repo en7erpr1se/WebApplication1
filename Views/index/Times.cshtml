@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Times</title>
+</head>
+<body>
+    <div> 
+        <script language="JavaScript">
+
+    function fulltime() {
+var tokio = +new Date() + 60 * 60 * 1000 * 6;
+var tokio = new Date(tokio);
+document.tokio.full.value = tokio.toLocaleString();
+var moskow = new Date();
+document.moskow.full.value = moskow.toLocaleString();
+var santiago = +new Date() - 60 * 60 * 1000 * 4;
+var santiago = new Date(santiago);
+document.santiago.full.value = santiago.toLocaleString();
+setTimeout('fulltime()', 1000)
+    }
+        </script>
+        <h1>Tokio</h1>
+        <form name="tokio"><input size="28" name="full"></form>
+        <h1>Moskow</h1>
+        <form name="moskow"><input size="28" name="full"></form>
+        <h1>Santiago</h1>
+        <form name="santiago"><input size="28" name="full"></form>
+        <script language="JavaScript">
+    fulltime();
+        </script>
+    </div>
+</body>
+</html>
