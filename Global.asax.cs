@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Data.Entity;
+using WebApplication1.Models;
+using WebApplication1.DAL;
 
 namespace WebApplication1
 {
@@ -13,6 +16,7 @@ namespace WebApplication1
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            Database.SetInitializer<UserContext>(new UserInitializer());
         }
     }
 }
