@@ -11,23 +11,28 @@ namespace WebApplication1.DAL
     {
         protected override void Seed(UserContext context)
         {
-            var groups = new List<Group>
+            var roles = new List<Role>
             {
-                new Models.Group {Name="administrator" },
-                new Models.Group {Name="moderator" },
-                new Models.Group {Name="client" },
+                new Models.Role {Name="administrator" },
+                new Models.Role {Name="notarius" },
+                new Models.Role {Name="client" },
             };
-            groups.ForEach(s => context.Group.Add(s));
+            roles.ForEach(s => context.Roles.Add(s));
             context.SaveChanges();
-
+            var addresses = new List<Address>
+            {
+                new Models.Address {Country="Russia",Region="Krum",City="Simferopol", Street="Lenina 12",ZipCode=89877},
+            };
+            addresses.ForEach(s => context.Addresses.Add(s));
+            context.SaveChanges();
             var users = new List<User>
             {
-                new Models.User {FirstName="Petr",LastName="Petrov",Age=25,GroupId=1 },
-                new Models.User  {FirstName="Ivan",LastName="PIvanov",Age=66,GroupId=2 },
-                new Models.User  {FirstName="Jeka",LastName="Petrovich",Age=3,GroupId=3  },
+                new Models.User {FirstName="Petr",LastName="Petrov",RoleId=1, Phone="79780001110", Email="Petriv@mail.ru",AddressId=1},
+                new Models.User  {FirstName="Ivan",LastName="PIvanov",RoleId=2, Phone="79780001133", Email="PIvanov@mail.ru",AddressId=1},
+                new Models.User  {FirstName="Jeka",LastName="Petrovich",RoleId=3, Phone="79780001155", Email="Petrovich@mail.ru",AddressId=1},
             };
             users.ForEach(s => context.Users.Add(s));
-            context.SaveChanges();
+            context.SaveChanges();    
         }
         }
 }

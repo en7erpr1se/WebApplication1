@@ -17,7 +17,7 @@ namespace WebApplication1.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            var users = db.Users.Include(u => u.Group);
+            var users = db.Users.Include(u => u.Address).Include(u => u.Role);
             return View(users.ToList());
         }
 
@@ -39,7 +39,8 @@ namespace WebApplication1.Controllers
         // GET: Users/Create
         public ActionResult Create()
         {
-            ViewBag.GroupId = new SelectList(db.Group, "Id", "Name");
+            ViewBag.AddressId = new SelectList(db.Addresses, "Id", "Country");
+            ViewBag.RoleId = new SelectList(db.Roles, "Id", "Name");
             return View();
         }
 
@@ -48,7 +49,7 @@ namespace WebApplication1.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Age,GroupId")] User user)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Phone,Email,RoleId,AddressId")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +58,8 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.GroupId = new SelectList(db.Group, "Id", "Name", user.GroupId);
+            ViewBag.AddressId = new SelectList(db.Addresses, "Id", "Country", user.AddressId);
+            ViewBag.RoleId = new SelectList(db.Roles, "Id", "Name", user.RoleId);
             return View(user);
         }
 
@@ -73,7 +75,8 @@ namespace WebApplication1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.GroupId = new SelectList(db.Group, "Id", "Name", user.GroupId);
+            ViewBag.AddressId = new SelectList(db.Addresses, "Id", "Country", user.AddressId);
+            ViewBag.RoleId = new SelectList(db.Roles, "Id", "Name", user.RoleId);
             return View(user);
         }
 
@@ -82,7 +85,7 @@ namespace WebApplication1.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Age,GroupId")] User user)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Phone,Email,RoleId,AddressId")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +93,8 @@ namespace WebApplication1.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.GroupId = new SelectList(db.Group, "Id", "Name", user.GroupId);
+            ViewBag.AddressId = new SelectList(db.Addresses, "Id", "Country", user.AddressId);
+            ViewBag.RoleId = new SelectList(db.Roles, "Id", "Name", user.RoleId);
             return View(user);
         }
 

@@ -13,7 +13,11 @@ namespace WebApplication1.Models
         public UserContext() : base("UserContext")
     { }
         public DbSet<User> Users { get; set; }
-        public DbSet<Group> Group { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Job> Jobs { get; set; }
+        public DbSet<Commentary> Commentaries { get; set; }
+        public DbSet<Feedback>  Feedbacks { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
